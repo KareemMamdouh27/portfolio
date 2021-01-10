@@ -9,7 +9,6 @@ if (isset($_POST['email'])){
 
   $res = login($email,$password);
 
-  print_r($res);die;
   if(!empty($res)){
     $_SESSION['user'] = $res;
     header("LOCATION:home.php");  
