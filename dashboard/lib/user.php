@@ -19,10 +19,11 @@ function login($email,$password) {
 
   $con = mysqli_connect("localhost","root","","porfolio");
 
-  $sql= "SELECT * FROM `user` WHERE 'email' = '$email' && `password` = '$password' ";
+  $sql= "SELECT * FROM `user` WHERE `email` = '$email' && `password` = '$password' ";
   
   $q = mysqli_query($con , $sql); 
   $res = mysqli_fetch_assoc($q);
+  print_r($res);
 
   return $res;
 }

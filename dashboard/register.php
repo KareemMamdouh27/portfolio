@@ -62,7 +62,6 @@ if(isset($_POST['name'])){
   <div class="card">
     <div class="card-body register-card-body">
       <!-- <p class="login-box-msg">Register a new membership</p> -->
-
       <?php if(!empty($error)) : ?>
       <div class="alert alert-danger alert-dismissible">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -70,7 +69,6 @@ if(isset($_POST['name'])){
                   <ul>
                   <?php foreach($error as $e): ?>
                     <li><?php echo $e ?></li>
-
                   <?php endforeach; ?>
                   </ul>
       </div>

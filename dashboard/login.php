@@ -7,16 +7,14 @@ if (isset($_POST['email'])){
   $email = $_POST['email'];
   $password = $_POST['password'];
 
-  $res = login($email,$password);
+  $res = login($email,$password); 
 
   if(!empty($res)){
     $_SESSION['user'] = $res;
     header("LOCATION:home.php");  
   }else {
-    header("LOCATION:login.php");
+    $error = 'Email or Password not correct';
   }
-
-  
 }
 
 
@@ -50,7 +48,7 @@ if (isset($_POST['email'])){
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+      <p class="login-box-msg"><?php echo (isset($error)) ? $error : 'Login'; ?></p>
 
       <form action="login.php" method="post">
         <div class="input-group mb-3">

@@ -1,11 +1,37 @@
 <?php
 session_start();
+require_once 'lib/portfolio.php';
 
-if(empty($_SESSION['user'])){
-  header("LOCATION:login.php");
+if(isset($_POST['desc'])){
+
+    $tmp = $_FILES['img']['tmp_name'];
+    $filename = $_FILES['img']['name'];
+    $user_id= $_SESSION['user']['id']; 
+    $desc = $_POST['desc'];
+
+    move_uploaded_file($tmp,"upload/".$filename);
+
+    $res = addNewPro($filename,$desc,$user_id);
+
+    if($res == true){
+        $success = 'project inserted';
+    }else {
+        $error = 'project not inserted';
+    }
 }
 
+
+
+
+
+
+
+
+
+
 ?>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -247,7 +273,51 @@ if(empty($_SESSION['user'])){
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        
+      <?php if(isset($success) OR isset($error)) : ?>
+      <div class="alert <?php if(isset($success)) :  ?> alert-success <?php else: ?> alter-danger <?php endif; ?>alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+                  <ul>
+                      <li>
+                        <?php echo(isset($success)) ? $success : $error?>
+                      </li>
+                  </ul>
+      </div>
+      <?php endif; ?>
+
+      <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Quick Example</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" action="portfolio.php" method="POST" enctype="multipart/form-data">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Description</label>
+                    <textarea class="form-control textarea" name="desc"></textarea>
+                </div>
+                  <div class="form-group">
+                    <label for="exampleInputFile">File input</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" name="img" class="custom-file-input" id="exampleInputFile">
+                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                      </div>
+                      <div class="input-group-append">
+                        <span class="input-group-text" id="">Upload</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+      
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
@@ -303,5 +373,13 @@ if(empty($_SESSION['user'])){
 <script src="backassets/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="backassets/dist/js/demo.js"></script>
+<!-- For Text Editor -->
+<script src="../../plugins/summernote/summernote-bs4.min.js"></script>
+<script>
+  $(function () {
+    // Summernote
+    $('.textarea').summernote()
+  })
+</script>
 </body>
 </html>
