@@ -15,7 +15,6 @@ function addNewPro($image , $desc , $user_id){
     }
 }
 
-
 function getPortfolios() {
     $con = mysqli_connect("localhost","root","","porfolio");
 

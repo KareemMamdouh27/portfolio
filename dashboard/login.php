@@ -7,7 +7,7 @@ if (isset($_POST['email'])){
   $email = $_POST['email'];
   $password = $_POST['password'];
 
-  $res = login($email,$password); 
+  $res = $this->login($email,$password); 
 
   if(!empty($res)){
     $_SESSION['user'] = $res;
