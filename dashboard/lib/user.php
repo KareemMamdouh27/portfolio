@@ -36,6 +36,5 @@ class user{
 
 }
 
-$userAdd = new user();
-$userAdd->addNewUser('$name' , '$email' , '$password');
+
 ?>

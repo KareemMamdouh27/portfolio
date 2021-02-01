@@ -2,11 +2,13 @@
 session_start();
 include 'lib/user.php';
 
-if (isset($_POST['email'])){
 
+if (isset($_POST['email']))
+{
   $email = $_POST['email'];
   $password = $_POST['password'];
 
+  $userlogin = new user();
   $res = $this->login($email,$password); 
 
   if(!empty($res)){

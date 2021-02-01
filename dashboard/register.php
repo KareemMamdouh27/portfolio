@@ -1,6 +1,7 @@
 <?php
 
 include 'lib/user.php';
+$userAdd = new user();
 
 if(isset($_POST['name'])){
 
@@ -23,7 +24,7 @@ if(isset($_POST['name'])){
   }
 
   if(empty($error)){
-    addNewUser($name,$email,$password);
+    $userAdd->addNewUser($name,$email,$password);
   }
 
 }; 
