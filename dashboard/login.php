@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'lib/user.php';
-
+$userAdd2 = new user();
 
 if (isset($_POST['email']))
 {
@@ -9,7 +9,7 @@ if (isset($_POST['email']))
   $password = $_POST['password'];
 
   $userlogin = new user();
-  $res = $this->login($email,$password); 
+  $res = $userAdd2->login($email,$password); 
 
   if(!empty($res)){
     $_SESSION['user'] = $res;
@@ -18,8 +18,6 @@ if (isset($_POST['email']))
     $error = 'Email or Password not correct';
   }
 }
-
-
 
 ?> 
 <!DOCTYPE html>
